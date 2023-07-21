@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sisp.dao.QuestionnaireMapper">
+<update id="update" parameterType="QuestionnaireEntity">
+    update questionnaire_info
+    <set>
+        <if test="questionnaireName != null">
+            questionnaire_name= #{questionnaireName},
+        </if>
+        <if test="questionnaireContent != null">
+            questionnaire_content = #{questionnaireContent},
+        </if>
+        <if test="createdBy != null">
+            created_by = #{createdBy},
+        </if>
+        <if test="createDate!= null">
+            create_date = #{createDate},
+        </if>
+        <if test="lastUpdatedBy != null">
+            last_updated_by #{lastUpdatedBy},
+        </if>
+        <if test="questionnaireStatus != null">
+            questionnaire_status = #{questionnaireStatus},
+        </if>
+        <if test="lastUpdateDate != null">
+            last_update_date = #{lastUpdateDate},
+        </if>
+        <if test="projectId != null">
+            project_id = #{projectId},
+        </if>
+        <if test="startTime  != null">
+            start_time = #{startTime},
+        </if>
+        <if test="stopTime != null">
+            stop_time = #{stopTime},
+        </if>
+        <if test="surveyObject != null">
+            survey_object= #{surveyObject}
+        </if>
+    </set>
+    where id = #{id}
+</update>
+ </mapper>

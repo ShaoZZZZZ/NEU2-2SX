@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sisp.dao.ProjectEntityMapper">
+
+
+
+<select id="queryProjectList" parameterType="ProjectEntity" resultType="ProjectEntity">
+    select * from project where PROJECT_NAME like concat('%', #{projectName}, '%') or id = #{id}
+</select>
+
+<insert id="insert" parameterType="ProjectEntity">
+        insert into project (ID, USER_ID, PROJECT_NAME, PROJECT_CONTENT, CREATE_BY, CREATION_DATE, LAST_UPDATED_BY, LAST_UPDATE_DATE)
+        values(#{id}, #{userId}, #{projectName},
+                                   #{projectContent}, #{createdBy},
+                                   #{creationDate}, #{lastUpdatedBy}, #{lastUpdateDate})
+</insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="ProjectEntity">
+        update project
+        <set>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="userId != null">
+                user_id = #{userId}
+            </if>
+            <if test="projectName != null">
+                project_name = #{projectName}
+            </if>
+            <if test="projectContent != null">
+                project_content = #{projectContent}
+            </if>
+            <if test="createdBy != null">
+                create_by = #{createdBy}
+            </if>
+            <if test="creationDate != null">
+                creation_date = #{creationDate}
+            </if>
+            <if test="lastUpdatedBy != null">
+                last_updated_by = #{lastUpdatedBy}
+            </if>
+            <if test="lastUpdateDate != null">
+                last_update_date = #{lastUpdateDate}
+            </if>
+        </set>
+    </update>
+<delete id="deleteProjectById" parameterType="ProjectEntity">
+    delete from project where ID = #{id}
+</delete>
+</mapper>
